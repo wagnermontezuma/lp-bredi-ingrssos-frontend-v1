@@ -5,7 +5,6 @@ import HowItWorks from "@/components/sections/HowItWorks";
 import Benefits from "@/components/sections/Benefits";
 import Features from "@/components/sections/Features";
 import Pricing from "@/components/sections/Pricing";
-import Segments from "@/components/sections/Segments";
 import SocialProof from "@/components/sections/SocialProof";
 import FinalCTA from "@/components/sections/FinalCTA";
 import Footer from "@/components/sections/Footer";
@@ -16,13 +15,12 @@ export default function Page() {
       <Header />
       <main>
         <Hero />
-        <EventTypes />
-        <HowItWorks />
         <Benefits />
-        <Features />
-        <Pricing />
-        <Segments />
+        <HowItWorks />
+        <EventTypes />
         <SocialProof />
+        <Pricing />
+        <Features />
         <FinalCTA />
       </main>
       <Footer />
