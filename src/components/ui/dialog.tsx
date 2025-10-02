@@ -4,11 +4,15 @@ import { X } from "lucide-react";
 
 import { cn } from "@/lib/utils";
 
+type DialogPortalProps = DialogPrimitive.DialogPortalProps & {
+  className?: string;
+};
+
 const Dialog = DialogPrimitive.Root;
 
 const DialogTrigger = DialogPrimitive.Trigger;
 
-const DialogPortal = ({ className, children, ...props }: DialogPrimitive.DialogPortalProps) => (
+const DialogPortal = ({ className, children, ...props }: DialogPortalProps) => (
   <DialogPrimitive.Portal {...props}>
     <div className={cn("fixed inset-0 z-50 flex items-end justify-center sm:items-center", className)}>{children}</div>
   </DialogPrimitive.Portal>
