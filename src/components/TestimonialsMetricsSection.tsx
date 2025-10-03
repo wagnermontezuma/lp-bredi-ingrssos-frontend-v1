@@ -53,7 +53,8 @@ const METRICS = [
 
 const TestimonialsMetricsSection = () => {
   const sectionRef = useRef<HTMLElement | null>(null);
-  const shouldReduceMotion = useReducedMotion() ?? false;
+  const reduceMotionPreference = useReducedMotion();
+  const shouldReduceMotion: boolean = reduceMotionPreference ?? false;
   const isInView = useInView(sectionRef, { margin: "-20% 0px", once: true });
 
   const { scrollYProgress } = useScroll({
