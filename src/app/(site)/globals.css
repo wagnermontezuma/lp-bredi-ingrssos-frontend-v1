@@ -27,4 +27,43 @@ body {
     margin-left: 0.25rem;
     animation: pisca-cursor 1s infinite;
   }
+
+  .feature-item[data-reveal] {
+    opacity: 0;
+    transform: translateY(24px);
+    will-change: transform, opacity;
+  }
+
+  .feature-icon {
+    background: rgba(250, 204, 21, 0.12);
+    color: #ca8a04;
+    box-shadow: inset 0 0 0 1px rgba(250, 204, 21, 0.35);
+    transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+      box-shadow 0.35s ease,
+      filter 0.35s ease;
+    transform: translate3d(calc(var(--mx, 0px)), calc(var(--my, 0px)), 0);
+  }
+
+  @media (hover: hover) {
+    .feature-item:hover .feature-icon {
+      transform: translate3d(calc(var(--mx, 0px)), calc(var(--my, 0px)), 0)
+        translateY(-2px) scale(1.03);
+      box-shadow: inset 0 0 0 1px rgba(250, 204, 21, 0.55),
+        0 6px 18px rgba(250, 204, 21, 0.2);
+      filter: saturate(1.05);
+    }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .feature-item[data-reveal] {
+    transition: none !important;
+    transform: none !important;
+    opacity: 1 !important;
+  }
+
+  .feature-icon {
+    transition: none !important;
+    transform: none !important;
+  }
 }
