@@ -2,6 +2,8 @@
 
 import { useEffect, useState } from "react";
 
+import HeroScrollGate from "@/components/HeroScrollGate";
+
 const banners = [
   {
     title: "Venda ingressos online de forma rápida, segura e profissional.",
@@ -28,50 +30,54 @@ const Hero = () => {
   }, []);
 
   return (
-    <section className="relative flex min-h-[70vh] items-center justify-center overflow-hidden bg-bredi-primary text-white md:min-h-[80vh]">
-      <div className="absolute inset-0">
-        <video
-          className="absolute inset-0 h-full w-full object-cover"
-          src="/hero.mp4"
-          autoPlay
-          muted
-          loop
-          playsInline
-          preload="auto"
-          aria-hidden="true"
-        />
-        <div className="absolute inset-0 bg-black/40" aria-hidden="true" />
-      </div>
-      <div className="container relative z-10 mx-auto px-6 text-center">
-        {banners.map((banner, index) => (
-          <div
-            key={index}
-            className={`transition-opacity duration-1000 ${index === currentBanner ? "opacity-100" : "hidden opacity-0"}`}
-          >
-            <h1 className="mb-4 text-4xl font-extrabold uppercase leading-tight drop-shadow-lg md:text-6xl">
-              {banner.title}
-            </h1>
-            <p className="mx-auto mb-8 max-w-3xl text-lg font-light text-gray-200 drop-shadow-md md:text-2xl">
-              {banner.subtitle}
-            </p>
-          </div>
-        ))}
-        <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
-          <a
-            href="#contact"
-            className="w-full transform rounded-lg border-2 border-transparent bg-bredi-accent px-10 py-4 text-lg font-bold text-bredi-primary shadow-lg transition-all hover:scale-105 hover:border-bredi-accent hover:bg-bredi-primary hover:text-bredi-accent sm:w-auto"
-          >
-            Comece agora
-          </a>
-          <a
-            href="#contact"
-            className="w-full transform rounded-lg border-2 border-bredi-accent px-10 py-4 text-lg font-bold text-bredi-accent transition-all hover:scale-105 hover:bg-bredi-accent hover:text-bredi-primary sm:w-auto"
-          >
-            Fale com nosso time
-          </a>
+    <HeroScrollGate
+      childrenTop={
+        <div>
+          {banners.map((banner, index) => (
+            <div
+              key={index}
+              className={`transition-opacity duration-1000 ${
+                index === currentBanner ? "opacity-100" : "hidden opacity-0"
+              }`}
+            >
+              <h1 className="text-4xl font-extrabold uppercase leading-tight drop-shadow-lg md:text-6xl">
+                {banner.title}
+              </h1>
+            </div>
+          ))}
         </div>
-      </div>
-    </section>
+      }
+      childrenBottom={
+        <div className="flex flex-col items-center">
+          {banners.map((banner, index) => (
+            <div
+              key={index}
+              className={`transition-opacity duration-1000 ${
+                index === currentBanner ? "opacity-100" : "hidden opacity-0"
+              }`}
+            >
+              <p className="mx-auto max-w-3xl text-lg font-light text-gray-200 drop-shadow-md md:text-2xl">
+                {banner.subtitle}
+              </p>
+            </div>
+          ))}
+          <div className="mt-8 flex w-full flex-col items-center justify-center gap-4 sm:w-auto sm:flex-row">
+            <a
+              href="#contact"
+              className="w-full transform rounded-lg border-2 border-transparent bg-bredi-accent px-10 py-4 text-lg font-bold text-bredi-primary shadow-lg transition-all hover:scale-105 hover:border-bredi-accent hover:bg-bredi-primary hover:text-bredi-accent sm:w-auto"
+            >
+              Comece agora
+            </a>
+            <a
+              href="#contact"
+              className="w-full transform rounded-lg border-2 border-bredi-accent px-10 py-4 text-lg font-bold text-bredi-accent transition-all hover:scale-105 hover:bg-bredi-accent hover:text-bredi-primary sm:w-auto"
+            >
+              Fale com nosso time
+            </a>
+          </div>
+        </div>
+      }
+    />
   );
 };
 
