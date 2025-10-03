@@ -1,13 +1,36 @@
-import { TicketIcon } from "@/components/icons/TicketIcon";
+import Image from "next/image";
+import Link from "next/link";
+
+export function SiteLogo() {
+  return (
+    <Link href="/" className="flex items-center" aria-label="Bredi Ingressos — ir para a home">
+      {/* Dimensões reais do PNG (aprox. 798×313) para evitar CLS;
+         reduzimos via Tailwind para caber na barra */}
+      <Image
+        src="/logo.png"
+        alt="Bredi Ingressos"
+        width={798}
+        height={313}
+        priority
+        className="
+          h-8 w-auto md:h-9 lg:h-10
+          object-contain
+          select-none
+          pointer-events-auto
+          drop-shadow-[0_1px_1.5px_rgba(0,0,0,0.45)]
+        "
+        sizes="(max-width: 768px) 128px, (max-width: 1024px) 160px, 180px"
+      />
+      <span className="sr-only">Bredi Ingressos</span>
+    </Link>
+  );
+}
 
 const Header = () => {
   return (
     <header className="bg-bredi-primary sticky top-0 z-50">
       <div className="container mx-auto flex items-center justify-between px-6 py-4">
-        <a href="#" className="flex items-center space-x-2">
-          <TicketIcon className="h-8 w-8 text-bredi-accent" />
-          <span className="text-2xl font-bold text-white">Bredi Ingressos</span>
-        </a>
+        <SiteLogo />
         <nav className="hidden items-center space-x-6 md:flex">
           <a
             href="#contact"
