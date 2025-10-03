@@ -27,42 +27,133 @@ body {
     margin-left: 0.25rem;
     animation: pisca-cursor 1s infinite;
   }
+}
 
-  .feature-item[data-reveal] {
-    opacity: 0;
-    transform: translateY(24px);
-    will-change: transform, opacity;
-  }
+/* === Sessão: Ferramentas que impulsionam seu evento === */
+#ferramentas {
+  /* fundo com grid sutil + dois glows amarelos que se movem levemente (variáveis já lidas pelo enhancer) */
+  --bredi-yellow: #facc15; /* ajuste se sua brand usar outro tom */
+  --bredi-yellow-600: #ca8a04;
+  --bgx: 0px;
+  --bgy: 0px; /* já controladas pelo enhancer, mantemos aqui para fallback */
+  background: radial-gradient(
+      900px 320px at 18% -6%,
+      rgba(250, 204, 21, 0.08),
+      transparent 60%
+    ),
+    radial-gradient(
+      800px 280px at 95% 0%,
+      rgba(250, 204, 21, 0.06),
+      transparent 60%
+    ),
+    repeating-linear-gradient(
+      90deg,
+      rgba(0, 0, 0, 0.035) 0,
+      rgba(0, 0, 0, 0.035) 1px,
+      transparent 1px,
+      transparent 120px
+    );
+  background-position: var(--bgx) var(--bgy),
+    calc(100% - var(--bgx)) calc(10% + var(--bgy)), 0 0;
+}
 
-  .feature-icon {
-    background: rgba(250, 204, 21, 0.12);
-    color: #ca8a04;
-    box-shadow: inset 0 0 0 1px rgba(250, 204, 21, 0.35);
-    transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
-      box-shadow 0.35s ease,
-      filter 0.35s ease;
-    transform: translate3d(calc(var(--mx, 0px)), calc(var(--my, 0px)), 0);
-  }
+/* heading: sublinhado sweep amarelo ao entrar (bem sutil) */
+#ferramentas .ft-heading {
+  position: relative;
+  isolation: isolate;
+}
 
-  @media (hover: hover) {
-    .feature-item:hover .feature-icon {
-      transform: translate3d(calc(var(--mx, 0px)), calc(var(--my, 0px)), 0)
-        translateY(-2px) scale(1.03);
-      box-shadow: inset 0 0 0 1px rgba(250, 204, 21, 0.55),
-        0 6px 18px rgba(250, 204, 21, 0.2);
-      filter: saturate(1.05);
-    }
+#ferramentas .ft-heading::after {
+  content: "";
+  position: absolute;
+  left: 10%;
+  bottom: -8px;
+  width: 80%;
+  height: 6px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, transparent, var(--bredi-yellow), transparent);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+#ferramentas.is-in .ft-heading::after {
+  transform: scaleX(1);
+}
+
+/* item base (mantém sua grid; só reforça contraste) */
+#ferramentas .feature-item[data-reveal] {
+  opacity: 0;
+  transform: translateY(24px);
+}
+
+#ferramentas.is-in .feature-item[data-reveal] {
+  /* o enhancer faz o scrub; isto é fallback */
+  opacity: 1;
+  transform: none;
+  transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.4s ease-out;
+}
+
+/* ícone com “tile” vibrante */
+#ferramentas .feature-icon {
+  --ring: rgba(250, 204, 21, 0.55);
+  --bg: rgba(250, 204, 21, 0.16);
+  --glow: rgba(250, 204, 21, 0.25);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  background: linear-gradient(180deg, var(--bg), rgba(250, 204, 21, 0.12));
+  box-shadow: inset 0 0 0 1px var(--ring), 0 6px 18px rgba(0, 0, 0, 0.06);
+  color: var(--bredi-yellow-600);
+  /* icone usa currentColor */
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.35s ease,
+    filter 0.35s ease, background 0.35s ease;
+  will-change: transform, box-shadow, filter;
+}
+
+/* hover/press: mais presença */
+@media (hover: hover) {
+  #ferramentas .feature-item:hover .feature-icon {
+    transform: translateY(-2px) scale(1.03);
+    box-shadow: inset 0 0 0 1px var(--ring), 0 10px 26px var(--glow);
+    filter: saturate(1.05);
   }
 }
 
+/* título do item: cor forte e destaque no foco/hover (sem mudar tipografia) */
+#ferramentas .feature-title {
+  color: #0f172a;
+  /* slate-900 */
+  text-underline-offset: 4px;
+  transition: color 0.2s ease;
+}
+
+@media (hover: hover) {
+  #ferramentas .feature-item:hover .feature-title {
+    color: #111827;
+    /* cinza mais forte */
+  }
+}
+
+/* texto: contraste melhor que o “apagado” atual */
+#ferramentas .feature-desc {
+  color: #475569;
+}
+
+/* slate-600 */
+
+/* reduz movimento */
 @media (prefers-reduced-motion: reduce) {
-  .feature-item[data-reveal] {
+  #ferramentas .feature-item[data-reveal] {
     transition: none !important;
     transform: none !important;
     opacity: 1 !important;
   }
 
-  .feature-icon {
+  #ferramentas .feature-icon {
     transition: none !important;
     transform: none !important;
   }
