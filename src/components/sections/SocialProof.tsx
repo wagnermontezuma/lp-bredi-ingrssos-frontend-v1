@@ -112,10 +112,12 @@ const SocialProof = () => {
     }
   }, []);
 
-  const headingWords = "Aprovado por quem usa".split(" ");
-
   return (
-    <section ref={sectionRef} className="relative overflow-hidden bg-white py-20">
+    <section
+      ref={sectionRef}
+      id="aprovado-por-quem-usa"
+      className="relative overflow-hidden bg-white py-20"
+    >
       {!prefersReducedMotion && (
         <motion.div
           aria-hidden="true"
@@ -126,25 +128,7 @@ const SocialProof = () => {
       <div className="container relative z-10 mx-auto px-6">
         <div className="mb-12 text-center">
           <h2 className="text-3xl font-bold uppercase text-bredi-primary md:text-4xl">
-            {prefersReducedMotion
-              ? "Aprovado por quem usa"
-              : headingWords.map((word, index) => (
-                  <motion.span
-                    key={`${word}-${index}`}
-                    className="inline-block"
-                    initial={{ y: "0.6em", opacity: 0 }}
-                    whileInView={{ y: 0, opacity: 1 }}
-                    viewport={{ once: true, margin: "-10% 0px" }}
-                    transition={{
-                      delay: 0.05 * index,
-                      duration: 0.5,
-                      ease,
-                    }}
-                  >
-                    {word}
-                    {index < headingWords.length - 1 ? " " : ""}
-                  </motion.span>
-                ))}
+            APROVADO POR QUEM USA
           </h2>
           {prefersReducedMotion ? (
             <p className="mx-auto mt-4 max-w-2xl text-lg text-bredi-secondary">
@@ -163,58 +147,38 @@ const SocialProof = () => {
           )}
         </div>
         <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-2">
-          {testimonials.map((testimonial, index) => {
-            const animationProps = prefersReducedMotion
-              ? {}
-              : {
-                  initial: {
-                    clipPath: "inset(0 100% 0 0 round 16px)",
-                    opacity: 0.001,
-                  },
-                  whileInView: {
-                    clipPath: "inset(0 0% 0 0 round 16px)",
-                    opacity: 1,
-                  },
-                  viewport: { once: true, amount: 0.4 },
-                };
-            const transition = prefersReducedMotion
-              ? undefined
-              : { duration: 0.7, ease, delay: index * 0.1 };
-
-            return (
-              <motion.div
-                key={testimonial.author}
-                className="rounded-xl bg-gray-100 p-8 shadow-sm"
-                {...animationProps}
-                transition={transition}
-                whileHover={
-                  !prefersReducedMotion && canHover
-                    ? {
-                        rotateX: 1.5,
-                        rotateY: -1.5,
-                        y: -4,
-                        boxShadow: "0px 20px 35px -20px rgba(0,0,0,0.25)",
-                        transition: { type: "spring", stiffness: 200, damping: 15 },
-                      }
-                    : undefined
-                }
-                style={{ transformPerspective: 800 }}
-              >
-                <p className="mb-6 text-lg italic text-bredi-secondary">"{testimonial.quote}"</p>
-                <div className="flex items-center">
-                  <img
-                    src={testimonial.avatar}
-                    alt={testimonial.author}
-                    loading="lazy"
-                    className="mr-4 h-12 w-12 rounded-full"
-                  />
-                  <div>
-                    <p className="font-bold text-bredi-primary">{testimonial.author}</p>
-                  </div>
+          {testimonials.map((testimonial) => (
+            <motion.figure
+              key={testimonial.author}
+              className="rounded-xl bg-gray-100 p-8 shadow-sm"
+              whileHover=
+                {!prefersReducedMotion && canHover
+                  ? {
+                      rotateX: 1.5,
+                      rotateY: -1.5,
+                      y: -4,
+                      boxShadow: "0px 20px 35px -20px rgba(0,0,0,0.25)",
+                      transition: { type: "spring", stiffness: 200, damping: 15 },
+                    }
+                  : undefined}
+              style={{ transformPerspective: 800 }}
+            >
+              <blockquote className="mb-6 text-lg italic text-bredi-secondary">
+                “{testimonial.quote}”
+              </blockquote>
+              <figcaption className="flex items-center">
+                <img
+                  src={testimonial.avatar}
+                  alt={testimonial.author}
+                  loading="lazy"
+                  className="mr-4 h-12 w-12 rounded-full"
+                />
+                <div>
+                  <p className="font-bold text-bredi-primary">{testimonial.author}</p>
                 </div>
-              </motion.div>
-            );
-          })}
+              </figcaption>
+            </motion.figure>
+          ))}
         </div>
         <div className="mt-16 rounded-xl bg-bredi-primary px-6 py-12 text-white shadow-2xl">
           <div className="grid grid-cols-1 gap-8 text-center md:grid-cols-3">
