@@ -9,7 +9,7 @@ import SocialProof from "@/components/sections/SocialProof";
 import FinalCTA from "@/components/sections/FinalCTA";
 import Footer from "@/components/sections/Footer";
 import TestimonialsDebugCard from "@/components/TestimonialsDebugCard";
-import TestimonialsRuntimeFix from "@/components/TestimonialsRuntimeFix";
+import ApprovedByUsersFix from "@/components/ApprovedByUsersFix";
 
 export default function Page() {
   return (
@@ -27,7 +27,7 @@ export default function Page() {
       </main>
       <Footer />
       <TestimonialsDebugCard />
-      <TestimonialsRuntimeFix />
+      <ApprovedByUsersFix />
     </div>
   );
 }

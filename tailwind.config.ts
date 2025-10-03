@@ -3,6 +3,7 @@ import animatePlugin from "tailwindcss-animate";
 
 const config: Config = {
   content: ["./src/app/**/*.{ts,tsx}", "./src/components/**/*.{ts,tsx}", "./src/lib/**/*.{ts,tsx}"],
+  safelist: ["md:justify-self-start", "md:justify-self-end"],
   theme: {
     extend: {
       colors: {
