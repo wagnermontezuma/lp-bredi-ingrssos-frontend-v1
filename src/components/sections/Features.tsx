@@ -2,7 +2,7 @@
 
 import { type ReactNode, useEffect, useRef } from "react";
 
-import { ChartBarIcon, ChatBubbleLeftRightIcon, PaintBrushIcon, QrCodeIcon } from "@/components/icons/FeatureIcons";
+import FeatureInteractivePanel from "@/components/FeatureInteractivePanel";
 
 function FerramentasSectionEnhancer({ children }: { children: ReactNode }) {
   const sectionRef = useRef<HTMLElement>(null);
@@ -97,29 +97,6 @@ function FerramentasSectionEnhancer({ children }: { children: ReactNode }) {
   );
 }
 
-const features = [
-  {
-    icon: <QrCodeIcon />,
-    title: "Check-in rápido com QR Code",
-    description: "Agilize a entrada do seu evento com nosso leitor de QR Code integrado.",
-  },
-  {
-    icon: <ChartBarIcon />,
-    title: "Relatórios detalhados",
-    description: "Acompanhe as vendas, o público e outras métricas importantes em tempo real.",
-  },
-  {
-    icon: <ChatBubbleLeftRightIcon />,
-    title: "Suporte humano e ágil",
-    description: "Nossa equipe está pronta para te ajudar a qualquer momento.",
-  },
-  {
-    icon: <PaintBrushIcon />,
-    title: "Página do evento personalizável",
-    description: "Crie uma página com a identidade visual da sua marca para vender seus ingressos.",
-  },
-];
-
 const Features = () => {
   return (
     <FerramentasSectionEnhancer>
@@ -131,16 +108,8 @@ const Features = () => {
           Recursos extras que fazem da nossa plataforma a escolha certa.
         </p>
 
-        <div className="mt-12 grid grid-cols-1 gap-12 md:grid-cols-2">
-          {features.map((feature) => (
-            <div key={feature.title} className="feature-item flex items-start gap-4" data-reveal>
-              <span className="feature-icon">{feature.icon}</span>
-              <div>
-                <h3 className="feature-title font-semibold text-xl md:text-2xl">{feature.title}</h3>
-                <p className="feature-desc mt-1">{feature.description}</p>
-              </div>
-            </div>
-          ))}
+        <div className="mt-12">
+          <FeatureInteractivePanel className="px-0 md:px-0" />
         </div>
       </div>
     </FerramentasSectionEnhancer>
