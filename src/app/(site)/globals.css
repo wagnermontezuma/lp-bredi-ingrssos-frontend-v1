@@ -4,6 +4,34 @@
 
 :root {
   color-scheme: light;
+  --bredi-yellow: #facc15;
+}
+
+/* estado normal: branco nítido */
+.hero-headline {
+  text-shadow: 0 0 0 #fff;
+  will-change: transform, filter, text-shadow;
+}
+
+/* hover do grupo (desktop): borda amarela + glow e leve flutuação */
+.group:hover .hero-headline {
+  -webkit-text-stroke: 1px var(--bredi-yellow);
+  text-stroke: 1px var(--bredi-yellow);
+
+  text-shadow:
+    0 0 0 #fff,
+    0 0 8px rgba(250, 204, 21, 0.55),
+    0 0 16px rgba(250, 204, 21, 0.35);
+
+  filter: drop-shadow(0 0 10px rgba(250, 204, 21, 0.35));
+  transform: translateY(-2px);
+}
+
+/* reduz movimento: mantém sem flutuar */
+@media (prefers-reduced-motion: reduce) {
+  .group:hover .hero-headline {
+    transform: none;
+  }
 }
 
 body {
