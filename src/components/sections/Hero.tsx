@@ -32,19 +32,19 @@ const Hero = () => {
   return (
     <HeroScrollGate
       childrenTop={
-        <div>
-          {banners.map((banner, index) => (
-            <div
-              key={index}
-              className={`transition-opacity duration-1000 ${
-                index === currentBanner ? "opacity-100" : "hidden opacity-0"
-              }`}
-            >
-              <h1 className="text-4xl font-extrabold uppercase leading-tight drop-shadow-lg md:text-6xl">
-                {banner.title}
-              </h1>
-            </div>
-          ))}
+        <div className="group inline-block">
+          <h1
+            className="
+              hero-headline
+              text-white
+              text-4xl sm:text-6xl lg:text-7xl
+              font-extrabold leading-tight tracking-tight
+              transition-transform duration-300
+            "
+          >
+            VENDA INGRESSOS ONLINE DE FORMA <br className="hidden md:block" />
+            RÁPIDA, SEGURA E PROFISSIONAL.
+          </h1>
         </div>
       }
       childrenBottom={
