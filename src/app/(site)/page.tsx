@@ -8,6 +8,8 @@ import Pricing from "@/components/sections/Pricing";
 import SocialProof from "@/components/sections/SocialProof";
 import FinalCTA from "@/components/sections/FinalCTA";
 import Footer from "@/components/sections/Footer";
+import TestimonialsDebugCard from "@/components/TestimonialsDebugCard";
+import TestimonialsRuntimeFix from "@/components/TestimonialsRuntimeFix";
 
 export default function Page() {
   return (
@@ -24,6 +26,8 @@ export default function Page() {
         <FinalCTA />
       </main>
       <Footer />
+      <TestimonialsDebugCard />
+      <TestimonialsRuntimeFix />
     </div>
   );
 }
