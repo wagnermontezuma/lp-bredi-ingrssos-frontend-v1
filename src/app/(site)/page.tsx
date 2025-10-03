@@ -1,5 +1,6 @@
 "use client";
 
+import { Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 
 import Header from "@/components/sections/Header";
@@ -15,7 +16,7 @@ import Footer from "@/components/sections/Footer";
 import TestimonialsDebugCard from "@/components/TestimonialsDebugCard";
 import ApprovedByUsersFix from "@/components/ApprovedByUsersFix";
 
-export default function Page() {
+function PageContent() {
   const search = useSearchParams();
   const showDebug =
     process.env.NEXT_PUBLIC_DEBUG_UI === "1" ||
@@ -38,5 +39,13 @@ export default function Page() {
       {showDebug ? <TestimonialsDebugCard /> : null}
       <ApprovedByUsersFix />
     </div>
+  );
+}
+
+export default function Page() {
+  return (
+    <Suspense fallback={null}>
+      <PageContent />
+    </Suspense>
   );
 }
