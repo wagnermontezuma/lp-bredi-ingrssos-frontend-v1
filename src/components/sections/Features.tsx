@@ -90,14 +90,7 @@ function FerramentasSectionEnhancer({ children }: { children: ReactNode }) {
     <section
       ref={sectionRef}
       id="ferramentas"
-      className="
-        relative overflow-hidden py-20
-        [--bgx:0px] [--bgy:0px] [--p:0]
-        bg-white
-        before:pointer-events-none before:absolute before:inset-0 before:-z-10
-        before:bg-[radial-gradient(800px_300px_at_20%_0%,rgba(250,204,21,0.06),transparent_60%),radial-gradient(700px_280px_at_90%_10%,rgba(250,204,21,0.05),transparent_60%),repeating-linear-gradient(90deg,rgba(0,0,0,0.03)_0,rgba(0,0,0,0.03)_1px,transparent_1px,transparent_120px)]
-        before:[background-position:var(--bgx)_var(--bgy),calc(100%-var(--bgx))_calc(10%+var(--bgy)),0_0]
-      "
+      className="relative overflow-hidden bg-white"
     >
       {children}
     </section>
@@ -130,28 +123,21 @@ const features = [
 const Features = () => {
   return (
     <FerramentasSectionEnhancer>
-      <div className="container mx-auto px-6">
-        <div className="mb-12 text-center">
-          <h2 className="text-3xl font-bold uppercase text-bredi-primary md:text-4xl">
-            Ferramentas que impulsionam seu evento
-          </h2>
-          <p className="mx-auto mt-4 max-w-2xl text-lg text-bredi-secondary">
-            Recursos extras que fazem da nossa plataforma a escolha certa.
-          </p>
-        </div>
-        <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
+      <div className="mx-auto max-w-7xl px-6 md:px-10 py-16 lg:py-24">
+        <h2 className="ft-heading text-center text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900">
+          FERRAMENTAS QUE IMPULSIONAM SEU EVENTO
+        </h2>
+        <p className="mt-2 text-center text-slate-600 sm:text-lg">
+          Recursos extras que fazem da nossa plataforma a escolha certa.
+        </p>
+
+        <div className="mt-12 grid grid-cols-1 gap-12 md:grid-cols-2">
           {features.map((feature) => (
-            <div
-              key={feature.title}
-              className="feature-item flex items-start p-6"
-              data-reveal
-            >
-              <div className="feature-icon mr-6 flex h-12 w-12 shrink-0 items-center justify-center rounded-lg text-bredi-accent">
-                {feature.icon}
-              </div>
+            <div key={feature.title} className="feature-item flex items-start gap-4" data-reveal>
+              <span className="feature-icon">{feature.icon}</span>
               <div>
-                <h3 className="mb-2 text-xl font-bold text-bredi-primary">{feature.title}</h3>
-                <p className="text-bredi-secondary">{feature.description}</p>
+                <h3 className="feature-title font-semibold text-xl md:text-2xl">{feature.title}</h3>
+                <p className="feature-desc mt-1">{feature.description}</p>
               </div>
             </div>
           ))}
