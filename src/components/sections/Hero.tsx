@@ -29,15 +29,19 @@ const Hero = () => {
 
   return (
     <section className="relative flex min-h-[70vh] items-center justify-center overflow-hidden bg-bredi-primary text-white md:min-h-[80vh]">
-      {banners.map((banner, index) => (
-        <div
-          key={index}
-          className={`absolute inset-0 transition-opacity duration-1000 ${index === currentBanner ? "opacity-20" : "opacity-0"}`}
-          aria-hidden={index !== currentBanner}
-        >
-          <img src={banner.imageUrl} alt="Evento" loading="lazy" className="h-full w-full object-cover" />
-        </div>
-      ))}
+      <div className="absolute inset-0">
+        <video
+          className="absolute inset-0 h-full w-full object-cover"
+          src="/hero.mp4"
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="auto"
+          aria-hidden="true"
+        />
+        <div className="absolute inset-0 bg-black/40" aria-hidden="true" />
+      </div>
       <div className="container relative z-10 mx-auto px-6 text-center">
         {banners.map((banner, index) => (
           <div
