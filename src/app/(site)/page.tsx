@@ -1,3 +1,7 @@
+"use client";
+
+import { useSearchParams } from "next/navigation";
+
 import Header from "@/components/sections/Header";
 import Hero from "@/components/sections/Hero";
 import EventTypes from "@/components/sections/EventTypes";
@@ -12,6 +16,11 @@ import TestimonialsDebugCard from "@/components/TestimonialsDebugCard";
 import ApprovedByUsersFix from "@/components/ApprovedByUsersFix";
 
 export default function Page() {
+  const search = useSearchParams();
+  const showDebug =
+    process.env.NEXT_PUBLIC_DEBUG_UI === "1" ||
+    search.get("debug") === "testimonials";
+
   return (
     <div className="bg-bredi-bg text-bredi-neutral">
       <Header />
@@ -26,7 +35,7 @@ export default function Page() {
         <FinalCTA />
       </main>
       <Footer />
-      <TestimonialsDebugCard />
+      {showDebug ? <TestimonialsDebugCard /> : null}
       <ApprovedByUsersFix />
     </div>
   );
